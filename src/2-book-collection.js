@@ -6,6 +6,8 @@ const bookInventory = {
   "Between the World and Me": 1
 };
 
+const logBooks = Object.keys()
+
 // Part A: Use Object.keys() and a for loop to print each book and its availability in this format:
 // "The Bluest Eye: 3 copies available"
 // "Beloved: 5 copies available"
