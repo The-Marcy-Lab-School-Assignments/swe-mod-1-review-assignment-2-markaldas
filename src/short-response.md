@@ -26,14 +26,13 @@ Part B: How would you modify the code so that reassigning `playlist2.songCount` 
 
 ### Response 1
 
-Your response...
-
+How I would modify the code do that `playlist2.songCount` does not affect `playlist1`.songCount is just by adding a spread `{...}` operator to `playlist1` when referring to it in the variable `playlist2`. This will create a copy of `playlist1` instead of referring to it thus not changing the value.
 **Corrected Code:**
 
 ```js
 // fix this!
 const playlist1 = { name: "My Favorites", songCount: 10 };
-const playlist2 = playlist1;
+const playlist2 = {...playlist1};
 playlist2.songCount = 15;
 console.log(playlist1.songCount);
 ```
@@ -60,8 +59,10 @@ For each task below, identify which array method (forEach, filter, map, find, or
 
 ### Response 2
 
-Your response...
-
+1. `students.filter()`
+2. `students.find()`
+3. `students.reduce()`
+4. `students.map()`
 ---
 
 ## Prompt 3
@@ -74,7 +75,7 @@ Explain why this error occurs, how to fix it, and provide a suggestion for how t
 const letters = ['a', 'b', 'c', 'd'];
 const capitalize = (str) => str.toUpperCase();
 
-const upperCaseLetters = letters.map(capitalize());
+const upperCaseLetters = letters.map(capitalize);
 // Uncaught TypeError: Cannot read properties of undefined (reading 'toUpperCase')
 
 console.log(upperCaseLetters);
@@ -82,7 +83,7 @@ console.log(upperCaseLetters);
 
 ### Response 3
 
-Your response...
+When we do `capitalize()` it will execute the function and it will run with no argument in it. this will lead it to run `undefined.toUpperCase()` which will not work. A best practice to avoid this is to not use the parentheses `()` when ever passing a function into these methods.
 
 ---
 
@@ -111,4 +112,6 @@ const grandTotal = orders.reduce((sum, order) => {
 
 ### Response 4
 
-Your response...
+- After this code runs `grandTotal` will be equal to `135`.
+- The `0` at the end of the reduce method is important because it makes sure it starts the initial value to 0. This will then make it so `sum` to hold the value of `order.total` and then it will just continue on from there.
+- The value of `sum` is first `0` then it adds it to the value of `order.total` which is `45` for the first iteration. What then gets `returned` for the first iteration is `45` and then it continues and does that process all over again but now with `sum` holding the value of `45` and `order.total` holding the next value of object `total`.
