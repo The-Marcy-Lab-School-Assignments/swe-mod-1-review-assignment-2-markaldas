@@ -6,6 +6,9 @@ const bookInventory = {
   "Between the World and Me": 1
 };
 
+const logBooks = Object.keys(bookInventory).forEach((book) => console.log(`${book}: ${bookInventory[book]} copies available`))
+console.log(logBooks)
+
 // Part A: Use Object.keys() and a for loop to print each book and its availability in this format:
 // "The Bluest Eye: 3 copies available"
 // "Beloved: 5 copies available"
@@ -13,3 +16,5 @@ const bookInventory = {
 
 // Part B: Calculate and log the total number of books across all titles (should be 15)
 // Hint: You'll need a variable to keep track of the running total as you loop through the keys
+const totalBooks = Object.keys(bookInventory).reduce((acc, curr) => acc + bookInventory[curr], 0)
+console.log(totalBooks);

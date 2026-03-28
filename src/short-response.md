@@ -25,15 +25,15 @@ Part A: What will be logged to the console? Why?
 Part B: How would you modify the code so that reassigning `playlist2.songCount` does NOT affect `playlist1`.songCount? Write the corrected code below your response (we've provided the broken code again for you to fix).
 
 ### Response 1
+Part A: What will be logged to the console is 15 because `playlist2` is a second reference to `playlist1` so when you are changing songCount in `playlist2` you are really changing it in `playlist1`. 
 
-Your response...
-
+Part B: How I would modify the code so that `playlist2.songCount` does not affect `playlist1`.songCount is just by adding a spread `{...}` operator to `playlist1` when referring to it in the variable `playlist2`. This will create a copy of `playlist1` instead of referring to it thus not changing the value.
 **Corrected Code:**
 
 ```js
 // fix this!
 const playlist1 = { name: "My Favorites", songCount: 10 };
-const playlist2 = playlist1;
+const playlist2 = { ...playlist1 };
 playlist2.songCount = 15;
 console.log(playlist1.songCount);
 ```
@@ -60,8 +60,10 @@ For each task below, identify which array method (forEach, filter, map, find, or
 
 ### Response 2
 
-Your response...
-
+1. `students.filter()`
+2. `students.find()`
+3. `students.reduce()`
+4. `students.map()`
 ---
 
 ## Prompt 3
@@ -74,7 +76,7 @@ Explain why this error occurs, how to fix it, and provide a suggestion for how t
 const letters = ['a', 'b', 'c', 'd'];
 const capitalize = (str) => str.toUpperCase();
 
-const upperCaseLetters = letters.map(capitalize());
+const upperCaseLetters = letters.map(capitalize);
 // Uncaught TypeError: Cannot read properties of undefined (reading 'toUpperCase')
 
 console.log(upperCaseLetters);
@@ -82,7 +84,7 @@ console.log(upperCaseLetters);
 
 ### Response 3
 
-Your response...
+When we do `capitalize()` it will execute the function and it will run immediately and with no argument str is undefined. This will lead it to run `undefined.toUpperCase()` which will not work. A best practice to avoid this is to pass the function itself into a method and not call it. So pass `letters.map(capitalize)` not `letters.map(capitalize())`
 
 ---
 
@@ -111,4 +113,6 @@ const grandTotal = orders.reduce((sum, order) => {
 
 ### Response 4
 
-Your response...
+- After this code runs `grandTotal` will be equal to `135`.
+- The `0` at the end of the reduce method is important because it makes sure that the initial value of the accumulator is 0. This is important because without it sum will start with the first element in the array which is `{ id: 1, total: 45 }` and order total will be 23 which will be `{ id: 1, total: 45 } + 23 ` this will lead to a bug.  
+- The value of `sum` is first `0` then it adds it to the value of `order.total` which is `45` for the first iteration. What then gets `returned`, the first iteration is `45` and then it continues and does that process all over again but now with `sum` holding the value of `45` and `order.total` holding the next value of object `total`.
